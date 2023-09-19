@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A bar chart with interactive year filter",
+  "title": "Top 10 películas por género",
+  "height": 300,
+  "width": 500,
+  "params": [
+    {
+      "name": "Genero",
+      "value": "Drama",
+      "bind": {"input": "select", "options": ["Todos", "Drama", "Comedy", "Musical", "Thriller/Suspense",
+       "Adventure", "Action", "Romantic Comedy", "Horror", "Western",
+       "Documentary", "Black Comedy", "Concert/Performance"]}
+    }
+  ],
+  "data": {
+    "url": "https://raw.githubusercontent.com/MaldonadoVihlai/visual_analytics/main/top_10_by_genre.json"
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "Title", "type": "nominal"},
+    "y": {"field": "IMDB Rating", "type": "quantitative", "scale": {"domain": [4.5, 9.5], "clamp": true}},
+    "color": {"field": "Major Genre", "type": "nominal", "scale": {"scheme": "category10"}},
+    "opacity": {
+      "condition": {"param": "Genero", "value": 1},
+      "value": 0.2
+    }
+  },
+  "transform": [
+    {
+      "filter": {"field": "Genre", "equal": {"expr": "Genero"}}
+    }
+    
+  ]
+}
