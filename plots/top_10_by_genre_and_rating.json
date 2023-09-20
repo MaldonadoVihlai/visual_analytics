@@ -25,8 +25,9 @@
   "encoding": {
     "x": {"field": "Title", "type": "nominal", "sort": "-y"},
     "y": {"field": "rating", 
-    "type": "quantitative", 
-    "scale": {"domain": [4.5, 9.5], "clamp": true}},
+    "type": "quantitative",
+    "scale": {"domain": [4.0, 10], "clamp": true}
+    },
     
     "color": {"field": "Major Genre", "type": "nominal", "scale": {"scheme": "category10"}},
     "opacity": {
