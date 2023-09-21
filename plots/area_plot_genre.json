@@ -1,33 +1,44 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Density Ridges in Vega-Lite",
+  "title": {
+    "text": "Distribución de la cantidad de películas sobre el rating por género",
+    "anchor": "middle",
+    "fontSize": 14
+  },
   "data": {
-    "url": "https://vega.github.io/vega-editor/app/data/movies.json"
+    "url": "https://vega.github.io/vega-editor/app/data/movies.json",
+    "format": {"type": "json"}
   },
   "width": 300,
   "height": 60,
-     
-      "mark": {"type": "area", "interpolate": "basis", "strokeWidth": 2},
-      "encoding": {
-        "x": {
-          "field": "IMDB_Rating",
-          "type": "quantitative",
-          "axis": {"title": "IMDB Rating"},
-        },
-        "y": {
-          "aggregate": "count",
-          "type": "quantitative",
-          "axis": {"title": "Cantidad"},
-          "scale": {"domain": [0,40], "clamp": true}
-        },
-        "color": {"field": "Major_Genre", "type": "nominal", "scale": {"scheme": "category10"}},
-        
-        "row": {
-        "field": "Major_Genre",
-        "type": "nominal",
-        "header": {"labelAngle": 0,"labelAlign": "left"},
-      }
-      }
-    
-  
+  "transform": [
+    {"filter": "datum.Major_Genre !== null"}
+  ],
+  "mark": {"type": "area", "interpolate": "basis", "strokeWidth": 2},
+  "encoding": {
+    "x": {
+      "field": "IMDB_Rating",
+      "type": "quantitative",
+      "axis": {"title": "Rating IMDB"}
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "axis": {"title": "Cantidad"},
+      "scale": {"domain": [0, 40], "clamp": true}
+    },
+    "color": {
+      "field": "Major_Genre",
+      "type": "nominal",
+      "scale": {"scheme": "category20"},
+      "title": "Género"
+    },
+    "row": {
+      "field": "Major_Genre",
+      "title": "Género",
+      "type": "nominal",
+      "header": {"labelAngle": 0, "labelAlign": "left"}
+    }
+  }
 }
