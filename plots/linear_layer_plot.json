@@ -31,7 +31,7 @@
       "mark": {"type":"area","line": {"color": "rgb(28 108 163)"}, "interpolate": "basis", "color":"rgb(31, 119, 180)"},
       "encoding": {
         "x": {
-          "field": "IMDB Rating",
+          "field": "rating",
           "type": "quantitative",
           "scale": {
             "domain": [
@@ -51,7 +51,7 @@
       "mark": {"type":"area","line": {"color": "darkorange"}, "interpolate": "basis", "color":"rgb(255, 127, 14)"},
       "encoding": {
         "x": {
-          "field": "IMDB Rating",
+          "field": "rating",
           "type": "quantitative",
           "scale": {
             "domain": [
@@ -74,6 +74,9 @@
     },
     {
       "filter": {"field": "rating_type", "equal": {"expr": "Rating"}}
-    }
+    },
+    {
+      "filter": {"field": "rating", "gte": 1.3}
+    },
   ]
 }
