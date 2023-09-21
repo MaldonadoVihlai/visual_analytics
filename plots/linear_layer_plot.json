@@ -1,0 +1,106 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A bar chart with interactive year filter",
+  "title": "Rating vs. US Gross",
+  "height": 400,
+  "width": 800,
+  "params": [
+    {
+      "name": "Genero",
+      "value": "Todos",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Todos", "Drama", "Comedy", "Musical", "Thriller/Suspense",
+          "Adventure", "Action", "Romantic Comedy", "Horror", "Western",
+          "Documentary", "Black Comedy", "Concert/Performance"
+        ]
+      }
+    },
+    {
+      "name": "Rating",
+      "value": "IMDB",
+      "bind": {"input": "select", "options": ["IMDB", "Rotten Tomatoes"]}
+    }
+  ],
+  "data": {
+    "url": "https://raw.githubusercontent.com/MaldonadoVihlai/visual_analytics/main/linear_plot.json"
+  },
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "IMDB Rating",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1.3,
+              9.5
+            ]
+          }
+        },
+        "y": {
+          "field": "US Gross",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Major Genre",
+          "type": "nominal",
+          "scale": {
+            "scheme": "category10"
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "Genero",
+            "value": 1
+          },
+          "value": 0.2
+        }
+      }
+    },
+
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "IMDB Rating",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1.3,
+              9.5
+            ]
+          }
+        },
+        "y": {
+          "field": "Worldwide Gross",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Major Genre",
+          "type": "nominal",
+          "scale": {
+            "scheme": "category10"
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "Genero",
+            "value": 1
+          },
+          "value": 0.2
+        }
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": {"field": "Genre", "equal": {"expr": "Genero"}}
+    },
+    {
+      "filter": {"field": "rating_type", "equal": {"expr": "Rating"}}
+    }
+  ]
+}
