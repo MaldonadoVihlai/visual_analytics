@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Density Ridges in Vega-Lite",
+  "data": {
+    "url": "https://vega.github.io/vega-editor/app/data/movies.json"
+  },
+  "width": 300,
+  "height": 20,
+     
+      "mark": {"type": "area", "interpolate": "basis", "strokeWidth": 2},
+      "encoding": {
+        "x": {
+          "field": "IMDB_Rating",
+          "type": "quantitative",
+          "axis": {"title": "IMDB Rating"},
+          // "scale": {"domain": [4, 10]}
+        },
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "axis": null,
+          // "scale": {"domain": [10,20]}
+        },
+        "color": {"field": "Major_Genre", "type": "nominal", "scale": {"scheme": "category10"}},
+        
+        "row": {
+        "field": "Major_Genre",
+        "type": "nominal",
+        "header": {"labelAngle": 0,"labelAlign": "left"},
+        // "columns": 12 // Adjust the number of columns as needed
+      }
+      }
+    
+  
+}
+
