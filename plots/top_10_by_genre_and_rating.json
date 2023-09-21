@@ -23,8 +23,9 @@
   },
   "mark": "bar",
   "encoding": {
-    "x": {"field": "Title", "type": "nominal", "sort": "-y"},
+    "x": {"field": "Title", "type": "nominal", "sort": "-y", "title": "Título"},
     "y": {"field": "rating", 
+    "title": "Rating",
     "type": "quantitative",
     "scale": {"domain": [4.0, 10], "clamp": true}
     },
